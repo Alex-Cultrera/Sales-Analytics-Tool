@@ -1,12 +1,15 @@
 package com.coderscampus.assignment6;
 
-public class MonthlySales {
+public class MonthlyVehicleSales {
 
 	String salesMonth;
 	int salesYear;
 	int salesVolume;
 	String carModel;
 
+	public MonthlyVehicleSales(String string, String string2) {
+		// TODO Auto-generated constructor stub
+	}
 	public String getMonth() {
 		return salesMonth;
 	}
