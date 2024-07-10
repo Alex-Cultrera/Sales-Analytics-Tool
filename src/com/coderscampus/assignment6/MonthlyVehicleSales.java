@@ -2,7 +2,7 @@ package com.coderscampus.assignment6;
 
 public class MonthlyVehicleSales {
 
-	int salesMonth; // this could be an enum?
+	int salesMonth; 
 	Integer salesYear;
 	Integer salesVolume;
 	String carModel;
