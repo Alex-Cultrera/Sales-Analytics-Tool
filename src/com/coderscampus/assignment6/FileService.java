@@ -13,6 +13,9 @@ public class FileService {
 	String header;
 	
 	public List<MonthlyVehicleSales> generateListOfMonthlyVehicleSales(String filename) throws IOException {
+		ExtractModelService modelName = new ExtractModelService();
+		ExtractDateService salesDate = new ExtractDateService();
+		String model = modelName.extractModel(filename);
 		List<MonthlyVehicleSales> myMonthlySales = new ArrayList<>();
 		BufferedReader reader = null;
 		try {
@@ -21,7 +24,7 @@ public class FileService {
 			while ((header = reader.readLine()) != null) {
 				while ((line = reader.readLine()) != null) {
 					String[] lineData = line.split(",");
-					MonthlyVehicleSales mySales = new MonthlyVehicleSales(lineData[0], lineData[0], lineData[1]); // (Mon-YR, salesVolume)
+					MonthlyVehicleSales mySales = new MonthlyVehicleSales(model, salesDate.extractMonth(lineData[0]), lineData[0], lineData[1]); // (Mon-YR, salesVolume)
 					myMonthlySales.add(mySales);
 				}
 				reader.close();

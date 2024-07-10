@@ -6,10 +6,8 @@ public class MainApplication {
 
 	public static void main(String[] args) throws IOException {
 
-	String fileName;
-		
 	ReportService salesReport = new ReportService();
-	salesReport.generateSalesReport(m3);
+	salesReport.generateSalesReport("model3.csv");
 	
 	
 	
@@ -50,10 +48,5 @@ public class MainApplication {
 //
 //		The best month for Model X was: yyyy-MM
 //		The worst month for Model X was: yyyy-MM
-		
-		
-
 	}
-
-	
 }
