@@ -8,6 +8,8 @@ public class MainApplication {
 
 	ReportService salesReport = new ReportService();
 	salesReport.generateSalesReport("model3.csv");
+	salesReport.generateSalesReport("modelS.csv");
+	salesReport.generateSalesReport("modelX.csv");
 	
 	
 	

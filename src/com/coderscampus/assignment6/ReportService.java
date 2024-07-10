@@ -20,7 +20,7 @@ public class ReportService {
 			System.out.println("2018 -> ");
 			System.out.println("2019 -> ");
 			System.out.println("The best month for " + model + " was: ");
-			System.out.println("The worst month for " + model + " was: ");
+			System.out.println("The worst month for " + model + " was: \n\n");
 		}
 	}
 }
