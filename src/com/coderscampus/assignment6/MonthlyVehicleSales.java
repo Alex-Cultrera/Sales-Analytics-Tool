@@ -3,11 +3,11 @@ package com.coderscampus.assignment6;
 public class MonthlyVehicleSales {
 
 	int salesMonth; // this could be an enum?
-	int salesYear;
-	int salesVolume;
+	Integer salesYear;
+	Integer salesVolume;
 	String carModel;
 
-	public MonthlyVehicleSales(String model, int month, int year, int volume) {
+	public MonthlyVehicleSales(String model, int month, Integer year, Integer volume) {
 		this.carModel = model;
 		this.salesMonth = month;
 		this.salesYear = year;
@@ -19,16 +19,16 @@ public class MonthlyVehicleSales {
 	public void setMonth(int month) {
 		this.salesMonth = month;
 	}
-	public int getYear() {
+	public Integer getYear() {
 		return salesYear;
 	}
-	public void setYear(int year) {
+	public void setYear(Integer year) {
 		this.salesYear = year;
 	}
-	public int getSalesVolume() {
+	public Integer getSalesVolume() {
 		return salesVolume;
 	}
-	public void setSalesVolume(int salesVolume) {
+	public void setSalesVolume(Integer salesVolume) {
 		this.salesVolume = salesVolume;
 	}
 	public String getCarModel() {

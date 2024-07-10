@@ -24,7 +24,8 @@ public class FileService {
 			while ((header = reader.readLine()) != null) {
 				while ((line = reader.readLine()) != null) {
 					String[] lineData = line.split(",");
-					MonthlyVehicleSales mySales = new MonthlyVehicleSales(model, salesDate.extractMonth(lineData[0]), lineData[0], lineData[1]); // (Mon-YR, salesVolume)
+					String[] lineDataSplit = lineData[0].split("-");
+					MonthlyVehicleSales mySales = new MonthlyVehicleSales(model, salesDate.extractMonth(lineData[0]), Integer.parseInt(lineDataSplit[1]), Integer.parseInt(lineData[1])); // (Mon-YR, salesVolume)
 					myMonthlySales.add(mySales);
 				}
 				reader.close();
