@@ -26,7 +26,7 @@ public class FileService {
 					String[] lineData = line.split(",");
 					String[] lineDataSplit = lineData[0].split("-");
 					MonthlyVehicleSales mySales = new MonthlyVehicleSales(model,
-							salesDate.extractMonth(lineDataSplit[0]), Integer.parseInt(lineDataSplit[1]),
+							salesDate.extractMonth(lineDataSplit[0]), salesDate.extractYear(lineDataSplit[1]),
 							Integer.parseInt(lineData[1]));
 					myMonthlySales.add(mySales);
 				}

@@ -1,13 +1,11 @@
 package com.coderscampus.assignment6;
 
-import java.time.LocalDateTime;
+import java.time.YearMonth;
 
 public class ExtractDateService {
 
-	LocalDateTime salesDate;
-
-	public int extractMonth(String date) {
-		int salesMonth = 0;
+	public Integer extractMonth(String date) {
+		Integer salesMonth = 0;
 		String monthCode = date;
 		if (date.contains(monthCode)) {
 			switch (monthCode) {
@@ -56,12 +54,11 @@ public class ExtractDateService {
 		return salesMonth;
 	}
 
-	public int extractYear(String date) {
-		int year;
-		date.
-		
-		return 0;
+	public Integer extractYear(String date) {
+		Integer salesYear = Integer.parseInt(date);
+		return salesYear;
 	}
+	
+	
 
 }
-//				format(DateTimeFormatter.ofPattern("yyyy-MM-dd h:mm:ss a"));
