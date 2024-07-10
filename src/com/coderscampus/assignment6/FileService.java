@@ -8,8 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileService {
-	public List<MonthlyVehicleSales> generateListOfSuspects(String filename) throws IOException {
-		List<SuspectLocation> mySuspects = new ArrayList<>();
+	
+	String filename;
+	String header;
+	
+	public List<MonthlyVehicleSales> generateListOfMonthlyVehicleSales(String filename) throws IOException {
+		List<MonthlyVehicleSales> myMonthlySales = new ArrayList<>();
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(filename));
@@ -17,15 +21,16 @@ public class FileService {
 			while ((header = reader.readLine()) != null) {
 				while ((line = reader.readLine()) != null) {
 					String[] lineData = line.split(",");
-					SuspectLocation suspect = new SuspectLocation(lineData[0], lineData[1]);
-					mySuspects.add(suspect);
+					MonthlyVehicleSales mySales = new MonthlyVehicleSales(lineData[0], lineData[0], lineData[1]); // (Mon-YR, salesVolume)
+					myMonthlySales.add(mySales);
 				}
 				reader.close();
-				return mySuspects;
+				return myMonthlySales;
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+
 }

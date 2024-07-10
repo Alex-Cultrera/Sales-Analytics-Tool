@@ -1,12 +1,13 @@
 package com.coderscampus.assignment6;
 
+import java.io.IOException;
+
 public class MainApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+
+	String fileName;
 		
-	String m3 = "Model 3";
-	String mS = "Model S";
-	String mX = "Model X";
 	ReportService salesReport = new ReportService();
 	salesReport.generateSalesReport(m3);
 	

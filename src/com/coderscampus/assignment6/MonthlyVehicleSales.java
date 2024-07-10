@@ -2,13 +2,16 @@ package com.coderscampus.assignment6;
 
 public class MonthlyVehicleSales {
 
-	String salesMonth;
+	String salesMonth; // this could be an enum?
 	int salesYear;
 	int salesVolume;
 	String carModel;
 
-	public MonthlyVehicleSales(String string, String string2) {
-		// TODO Auto-generated constructor stub
+	public MonthlyVehicleSales(String model, String month, int year, int volume) {
+		this.carModel = model;
+		this.salesMonth = month;
+		this.salesYear = year;
+		this.salesVolume = volume;
 	}
 	public String getMonth() {
 		return salesMonth;
