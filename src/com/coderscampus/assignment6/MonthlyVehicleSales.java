@@ -1,7 +1,5 @@
 package com.coderscampus.assignment6;
 
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 
 public class MonthlyVehicleSales {
 
@@ -9,15 +7,7 @@ public class MonthlyVehicleSales {
 	Integer salesYear;
 	Integer salesVolume;
 	String carModel;
-	YearMonth salesYearMonth;
 
-	public YearMonth salesYearMonth (Integer year, Integer month) {
-		YearMonth yearMonth = YearMonth.of(year, month).format(DateTimeFormatter.ofPattern("yyyy-MM");
-		this.salesYear=year;
-		this.salesMonth=month;
-		return yearMonth;
-	}
-	
 	public MonthlyVehicleSales(String model, Integer month, Integer year, Integer volume) {
 		this.carModel = model;
 		this.salesMonth = month;

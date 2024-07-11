@@ -10,9 +10,6 @@ public class MainApplication {
 	salesReport.generateSalesReport("model3.csv");
 	salesReport.generateSalesReport("modelS.csv");
 	salesReport.generateSalesReport("modelX.csv");
-	
-	
-	
 		
 //	Requirements:
 //	1. read the data from 3 different CSV files

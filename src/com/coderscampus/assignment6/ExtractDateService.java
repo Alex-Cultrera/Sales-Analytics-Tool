@@ -1,64 +1,82 @@
 package com.coderscampus.assignment6;
 
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 
 public class ExtractDateService {
 
-	public Integer extractMonth(String date) {
-		Integer salesMonth = 0;
-		String monthCode = date;
-		if (date.contains(monthCode)) {
+	YearMonth salesYearMonth;
+	
+	public Integer extractYear(String year) {
+		Integer extractedYear = Integer.parseInt(year);
+		return extractedYear;
+	}
+
+	public Integer extractMonth(String month) {
+		Integer extractedMonth = 0;
+		String monthCode = month;
+		if (month.contains(monthCode)) {
 			switch (monthCode) {
 			case "Jan":
-				salesMonth = 1;
+				extractedMonth = 1;
 				break;
 			case "Feb":
-				salesMonth = 2;
+				extractedMonth = 2;
 				break;
 			case "Mar":
-				salesMonth = 3;
+				extractedMonth = 3;
 				break;
 			case "Apr":
-				salesMonth = 4;
+				extractedMonth = 4;
 				break;
 			case "May":
-				salesMonth = 5;
+				extractedMonth = 5;
 				break;
 			case "Jun":
-				salesMonth = 6;
+				extractedMonth = 6;
 				break;
 			case "Jul":
-				salesMonth = 7;
+				extractedMonth = 7;
 				break;
 			case "Aug":
-				salesMonth = 8;
+				extractedMonth = 8;
 				break;
 			case "Sep":
-				salesMonth = 9;
+				extractedMonth = 9;
 				break;
 			case "Oct":
-				salesMonth = 10;
+				extractedMonth = 10;
 				break;
 			case "Nov":
-				salesMonth = 11;
+				extractedMonth = 11;
 				break;
 			case "Dec":
-				salesMonth = 12;
+				extractedMonth = 12;
 				break;
 			default:
 				System.out.println(
-						"CSV contains invalid month entry. " + "Check spelling of month in the Date column.\n");
+						"CSV contains invalid month entry. " 
+				+ "Check spelling of month in the Date column.\n");
 				break;
 			}
 		}
-		return salesMonth;
+		return extractedMonth;
 	}
-
-	public Integer extractYear(String date) {
-		Integer salesYear = Integer.parseInt(date);
+	
+	public Integer salesYear (Integer year, Integer month) {
+		String yearMonth = YearMonth.of(year, month)
+									.format(DateTimeFormatter.ofPattern("yyyy-MM"));
+		String[] date = yearMonth.split("-");
+		Integer salesYear = Integer.parseInt(date[0]);
 		return salesYear;
 	}
 	
-	
+	public Integer salesMonth (Integer year, Integer month) {
+		String yearMonth = YearMonth.of(year, month)
+									.format(DateTimeFormatter.ofPattern("yyyy-MM"));
+		String[] date = yearMonth.split("-");
+		Integer salesMonth = Integer.parseInt(date[1]);
+		return salesMonth;
+	}
 
 }

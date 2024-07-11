@@ -13,10 +13,10 @@ public class FileService {
 	String header;
 
 	public List<MonthlyVehicleSales> generateListOfMonthlyVehicleSales(String filename) throws IOException {
-		ExtractModelService modelName = new ExtractModelService();
-		ExtractDateService salesDate = new ExtractDateService();
-		String model = modelName.extractModel(filename);
 		List<MonthlyVehicleSales> myMonthlySales = new ArrayList<>();
+		ExtractModelService modelName = new ExtractModelService();
+		String model = modelName.extractModel(filename);
+		ExtractDateService date = new ExtractDateService();
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(filename));
@@ -25,8 +25,11 @@ public class FileService {
 				while ((line = reader.readLine()) != null) {
 					String[] lineData = line.split(",");
 					String[] lineDataSplit = lineData[0].split("-");
+					Integer extractedMonth = date.extractMonth(lineDataSplit[0]);
+					Integer extractedYear = date.extractYear(lineDataSplit[1]);
 					MonthlyVehicleSales mySales = new MonthlyVehicleSales(model,
-							salesDate.extractMonth(lineDataSplit[0]), salesDate.extractYear(lineDataSplit[1]),
+							date.salesMonth(extractedYear, extractedMonth), 
+							date.salesYear(extractedYear, extractedMonth),
 							Integer.parseInt(lineData[1]));
 					myMonthlySales.add(mySales);
 				}
