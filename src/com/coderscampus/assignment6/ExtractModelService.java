@@ -16,5 +16,4 @@ public class ExtractModelService {
 		return model;
 	}
 	
-	
 }

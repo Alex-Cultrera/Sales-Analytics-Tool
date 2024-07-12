@@ -13,7 +13,7 @@ public class FileService {
 	String header;
 
 	public List<MonthlyVehicleSales> generateListOfMonthlyVehicleSales(String filename) throws IOException {
-		List<MonthlyVehicleSales> myMonthlySales = new ArrayList<>();
+		List<MonthlyVehicleSales> myMonthlySalesList = new ArrayList<>();
 		ExtractModelService modelName = new ExtractModelService();
 		String model = modelName.extractModel(filename);
 		ExtractDateService date = new ExtractDateService();
@@ -30,11 +30,13 @@ public class FileService {
 					MonthlyVehicleSales mySales = new MonthlyVehicleSales(model,
 							date.salesMonth(extractedYear, extractedMonth), 
 							date.salesYear(extractedYear, extractedMonth),
-							Integer.parseInt(lineData[1]));
-					myMonthlySales.add(mySales);
+							Integer.parseInt(lineData[1]), 
+							date.salesYearMonth((date.salesYear(extractedYear, extractedMonth)), 
+									(date.salesMonth(extractedYear, extractedMonth))));
+					myMonthlySalesList.add(mySales);
 				}
 				reader.close();
-				return myMonthlySales;
+				return myMonthlySalesList;
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

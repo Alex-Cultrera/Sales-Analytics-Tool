@@ -1,7 +1,10 @@
 package com.coderscampus.assignment6;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ReportService {
 
@@ -20,34 +23,58 @@ public class ReportService {
 			List<MonthlyVehicleSales> monthlySalesList = fileService.generateListOfMonthlyVehicleSales(fileName);
 			System.out.println(model + " Yearly Sales Report\n---------------------------");
 			printYearlySalesVolume(monthlySalesList);
-			System.out.println("The best month for " + model + " was: ");
-			System.out.println("The worst month for " + model + " was: \n\n");
+			System.out.println("The best month for " + model + " was: " + getBestSalesYearMonth(monthlySalesList));
+			System.out.println("The worst month for " + model + " was: " + getWorstSalesYearMonth(monthlySalesList) + "\n\n");
 		}
 	}
 
 	public void printYearlySalesVolume (List<MonthlyVehicleSales> monthlySalesList) {
 		minSalesYear = monthlySalesList.stream()
-									   .mapToInt(sales -> sales.getYear())
+									   .mapToInt(sales -> sales.getSalesYear())
 									   .summaryStatistics()
 									   .getMin();
 		maxSalesYear = monthlySalesList.stream()
-									   .mapToInt(sales -> sales.getYear())
+									   .mapToInt(sales -> sales.getSalesYear())
 									   .summaryStatistics()
 									   .getMax();
 		Integer elementToFilter = minSalesYear;
 		while (elementToFilter <= maxSalesYear) {
 			System.out.println(elementToFilter + " -> " 
-					+ sumAnnualVolume(monthlySalesList, elementToFilter)); 
+					+ withLargeIntegers(sumAnnualVolume(monthlySalesList, elementToFilter))); 
 			elementToFilter++;
 		}
 	}
 
 	public int sumAnnualVolume(List<MonthlyVehicleSales> monthlySalesList, Integer elementToFilter) {
 		int annualVolume = monthlySalesList.stream()
-				.filter(sales -> sales.getYear().equals(elementToFilter))
+				.filter(sales -> sales.getSalesYear().equals(elementToFilter))
 				.mapToInt(sales -> sales.getSalesVolume())
 				.sum();
 		return annualVolume;
+	}
+	
+	public String getBestSalesYearMonth(List<MonthlyVehicleSales> monthlySalesList) {
+		List<String> bestSalesYearMonthList = monthlySalesList.stream()
+				.sorted(Comparator.comparingInt(sales -> sales.getSalesVolume()))
+				.map(sales -> sales.getSalesYearMonth())
+				.collect(Collectors.toList());
+		int lastIndex = bestSalesYearMonthList.size()-1;
+		String bestSalesYearMonth = bestSalesYearMonthList.get(lastIndex);
+		return bestSalesYearMonth;
+	}
+	
+	public String getWorstSalesYearMonth(List<MonthlyVehicleSales> monthlySalesList) {
+		List<String> worstSalesYearMonthList = monthlySalesList.stream()
+				.sorted(Comparator.comparingInt(sales -> sales.getSalesVolume()))
+				.map(sales -> sales.getSalesYearMonth())
+				.collect(Collectors.toList());
+		String worstSalesYearMonth = worstSalesYearMonthList.get(0);
+		return worstSalesYearMonth;
+	}
+	
+	public static String withLargeIntegers(Integer value) {
+	    DecimalFormat df = new DecimalFormat("###,###,###");
+	    return df.format(value);
 	}
 	
 }

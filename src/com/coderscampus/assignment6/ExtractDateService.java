@@ -5,10 +5,10 @@ import java.time.format.DateTimeFormatter;
 
 public class ExtractDateService {
 
-	YearMonth salesYearMonth;
+	String salesYearMonth;
 	
 	public Integer extractYear(String year) {
-		Integer extractedYear = Integer.parseInt(year);
+		Integer extractedYear = Integer.parseInt(year)+2000;
 		return extractedYear;
 	}
 
@@ -77,6 +77,11 @@ public class ExtractDateService {
 		String[] date = yearMonth.split("-");
 		Integer salesMonth = Integer.parseInt(date[1]);
 		return salesMonth;
+	}
+	public String salesYearMonth (Integer year, Integer month) {
+		salesYearMonth = YearMonth.of(year, month)
+				.format(DateTimeFormatter.ofPattern("yyyy-MM"));
+		return salesYearMonth;
 	}
 
 }
